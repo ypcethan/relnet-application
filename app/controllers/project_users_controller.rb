@@ -11,6 +11,9 @@ class ProjectUsersController < ProjectsBaseController
 
   def destroy
     ProjectUser.find_by(user_id: params[:id], project: @current_project).destroy
+  rescue ProjectUser::LastRecordError => e
+    flash[:error] = e.message
+  ensure
     redirect_back(fallback_location: root_path)
   end
 end

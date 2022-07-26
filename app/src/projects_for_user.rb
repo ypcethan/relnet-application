@@ -23,9 +23,7 @@ class ProjectsForUser
   end
 
   def user_on_project?(project)
-    users = project.project_users
-    return true if users.empty?
     return true if @user.super_user
-    users.map(&:user_id).include? @user.id
+    project.project_users.exists?(user_id: @user.id)
   end
 end

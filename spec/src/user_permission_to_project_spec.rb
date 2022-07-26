@@ -52,8 +52,8 @@ RSpec.describe UserPermissionToProject do
     end
 
     context "when the project DOES NOT have a specific user list" do
-      it "returns true" do
-        expect(subject.run).to eq(true)
+      it "returns false" do
+        expect(subject.run).to eq(false)
       end
     end
   end
